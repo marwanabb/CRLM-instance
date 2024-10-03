@@ -1,6 +1,6 @@
 # CRLM-instance
 
-Code for ISBI-2025 Conference - Exploring learning transferability in deep segmentation of liver colorectal metastases
+Code for ISBI-2025 Conference - INSTANCE-AWARE DEEP LEARNING FOR LIVER METASTASIS SEGMENTATION
 
 To be released with publication.
 
