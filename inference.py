@@ -48,19 +48,10 @@ from monai.transforms import (
 )
 
 
-def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strategy: str, weights_folder: str):
-        
-   
-    files = sorted(os.listdir(test_dir))
-
-
-    if is_MetaRec:
-        testing_volumes = [f for f in files if f.endswith(".nii.gz") and not f.startswith('.')]
-        testing_volumes = [f for f in testing_volumes if f.startswith('image')]
-    
-    else:
-        volumes = [f for f in files if f.endswith("VE.nii.gz") and not f.startswith('.')]
-        testing_volumes = [path for path in volumes if path.split('-')[0] in D3]
+def inference(dir: str, output_dir: str, weights_path: str):
+      
+    files = sorted(os.listdir(dir))
+    volumes = [f for f in files if f.endswith(".nii.gz")]
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -76,8 +67,6 @@ def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strateg
     )
     
     # Load the weights saved using DataParallel
-    weights_path = os.path.join(weights_folder, id_strategy + ".pth")
-    print(f"path weights : {weights_path}")
 
     checkpoint = torch.load(weights_path, map_location=device)
     model_state_dict = checkpoint['model_state_dict']
@@ -108,12 +97,9 @@ def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strateg
         ToTensord(keys=["image", "label"]),
     ])
     
-    for target in testing_volumes:
+    for target in volumes:
         
-        if os.path.exists(os.path.join(output_dir, target.split('.nii')[0]+'_liv-tum.nii.gz')):
-            continue
-        
-        test_file = [{'image': os.path.join(test_dir, target),
+        inference_file = [{'image': os.path.join(test_dir, target),
                      'label': os.path.join(test_dir, target)} ]
 
    
@@ -181,9 +167,9 @@ def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strateg
         nib.save(new_nifti_image, os.path.join(output_dir, target.split('.nii')[0]+'_liv-tum.nii.gz'))
             
 
-directory = '/gpfswork/rech/aww/ufu44lj/Datasets/metaHep/dataset'
-output_dir = '/gpfswork/rech/aww/ufu44lj/Code/isbi_2025/swin_unetr/Inference/swin_unetr_blob_0_main_1_masking_True_cat_max_filter'
-weights_folder = '/gpfswork/rech/aww/ufu44lj/Code/isbi_2025/swin_unetr/Output_swin_unetr_blob_distributed'
+directory = ''
+output_dir = ''
+weights_folder = ''
     
 
-inference(directory, output_dir, D3, "swin_unetr_blob_0_main_1_masking_True_cat_max", weights_folder)
+inference(directory, output_dir, weights_path)
