@@ -49,18 +49,11 @@ from monai.transforms import (
 
 
 def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strategy: str, weights_folder: str):
-    
-    # Make sure id_strategy is within valid range
-    #if not (1 <= id_strategy <= 8):
-    #    raise ValueError("id_strategy should be an integer between 1 and 7.")
-
-    #output_dir =  os.path.join(output_dir, id_strategy)
         
-    is_MetaRec = False
+   
     files = sorted(os.listdir(test_dir))
 
-    T2 = ['004-02', '020-02', '035-01', '045-03', '049-02', '051-02', '052-03', '060-01', '064-03', '073-02', '075-03', '077-02', '078-02', '085-02', '089-02', '108-01', '109-01', '110-01', '115-01', '121-01', '122-02', '133-02', '144-02', '147-02', '148-01', '149-01', '150-01', '151-01', '153-01', '154-01', '155-01', '156-01', '157-01', '158-01', '159-01', '161-01', '162-01', '163-01', '164-01', '165-01', '166-01', '167-01', '168-01', '169-01', '170-01', '171-01']
-    
+
     if is_MetaRec:
         testing_volumes = [f for f in files if f.endswith(".nii.gz") and not f.startswith('.')]
         testing_volumes = [f for f in testing_volumes if f.startswith('image')]
@@ -85,15 +78,6 @@ def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strateg
     # Load the weights saved using DataParallel
     weights_path = os.path.join(weights_folder, id_strategy + ".pth")
     print(f"path weights : {weights_path}")
-    #checkpoint = torch.load(weights_path, map_location='cuda:0')
-    #modified_checkpoint = {}
-    #for key in checkpoint:
-        #modified_key = key.replace("module.", "")  # remove `module.` prefix
-        #modified_checkpoint[modified_key] = checkpoint[key]
-
-    
-    # Load the modified weights to the model
-    #model.load_state_dict(modified_checkpoint)
 
     checkpoint = torch.load(weights_path, map_location=device)
     model_state_dict = checkpoint['model_state_dict']
@@ -196,10 +180,6 @@ def inference(test_dir: str, output_dir: str, id_patients: list[int], id_strateg
         new_nifti_image = nib.Nifti1Image(result_data, nifti_image.affine)
         nib.save(new_nifti_image, os.path.join(output_dir, target.split('.nii')[0]+'_liv-tum.nii.gz'))
             
-    
-# testing volumes
-D3 = ['038', '081', '074', '010', '109', '017', '120', '129', '108', '079', '148', '029', '127', '107', '055', '139', '045', '164', '043', '061', '094', '047', '011', '030', '065', '004', '085', '007', '167', '140', '116', '151', '073', '095', '162', '166', '015', '126', '157', '118', '124', '063', '066', '037', '042', '097', '019', '003', '123', '023', '142', '154', '067', '001', '054', '144', '113', '145', '100', '013', '138', '150', '072', '131', '136', '111', '016', '076', '090', '132', '035', '014', '121', '147', '046', '028', '103', '082', '146', '110', '153', '084', '020', '059', '137']
-
 
 directory = '/gpfswork/rech/aww/ufu44lj/Datasets/metaHep/dataset'
 output_dir = '/gpfswork/rech/aww/ufu44lj/Code/isbi_2025/swin_unetr/Inference/swin_unetr_blob_0_main_1_masking_True_cat_max_filter'
