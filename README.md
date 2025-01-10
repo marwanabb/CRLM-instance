@@ -41,3 +41,26 @@ Run the inference :
 ```python
 python inference.py
 ```
+
+The script will:
+
+1. Process all .nii.gz files in the input directory
+2. Generate segmentation masks with labeled regions:
+ - 0: Background
+ - 1: Liver tissue
+ - 2: Tumor regions
+3. Apply post-processing to filter small components and retain only significant lesions
+4. Save the results as NIfTI files in the specified output directory
+
+##Performance Notes
+As detailed in our paper, the models demonstrate different strengths:
+- SwinUNETRb achieves balanced performance across lesion sizes
+- SwinUNETR• shows improved detection of small lesions (<1000mm³)
+- Both variants achieve high recall but may generate more false positives compared to traditional approaches (eg, nn-Unet).
+Post-processing helps filter out small artifact components with a fixed volume threshold to reduce false positives generation.
+
+##Reference
+If you use this code in your research, please cite our paper [citation to be added].
+
+##Contact
+marwan.abbas@univ-brest.fr
