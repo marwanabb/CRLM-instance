@@ -16,7 +16,7 @@ This project focuses on investigating the use of instance-aware loss approach in
 
 ## Input Requirements
 - CT scans must be provided in NIfTI format (.nii.gz)
-- Images should be in abdominal CT window settings
+- Images will be processed in abdominal CT window settings
 - Our models were trained on scans resampled to 1.5×1.5×2.0 mm³ voxels
 
 ## Pre-trained Models
