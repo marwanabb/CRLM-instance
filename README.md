@@ -22,11 +22,22 @@ Pre-trained weights for two SwinUNETR variants are available:
 - SwinUNETRb: Baseline model trained with standard Dice+CE loss
 - SwinUNETR•: Enhanced model incorporating instance-aware loss for improved small lesion detection
 
-Access to model weights is provided through our cloud archive [link to be added].
+Access to model weights is provided through our cloud archive https://drive.google.com/drive/folders/1II_7cp-it7lI2vnUGDgD33SSSHpaROuV?usp=sharing.
 
 ## Usage
 Configure the input/output paths and model selection:
 ```python
-directory = "path/to/input/nifti/files"     # Input directory containing .nii.gz files
-output_dir = "path/to/save/segmentations"   # Output directory for segmentation results
-weights_path = "path/to/model/weights.pth"  # Path to pre-trained model weights
+directory = ""     # Input directory containing .nii.gz files
+output_dir = ""   # Output directory for segmentation results
+weights_path = ""  # Path to pre-trained model weights
+```
+
+Install the dependencies
+```bash
+pip install -r requirements.txt
+```
+
+Run the inference :
+```python
+python inference.py
+```
