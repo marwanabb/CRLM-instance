@@ -57,6 +57,7 @@ As detailed in our paper, the models demonstrate different strengths:
 - SwinUNETRb achieves balanced performance across lesion sizes
 - SwinUNETR• shows improved detection of small lesions (<1000mm³)
 - Both variants achieve high recall but may generate more false positives compared to traditional approaches (eg, nn-Unet).
+
 Post-processing helps filter out small artifact components with a fixed volume threshold to reduce false positives generation.
 
 ## Reference
