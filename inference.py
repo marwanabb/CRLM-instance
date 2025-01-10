@@ -208,10 +208,9 @@ def inference(dir: str, output_dir: str, weights_path: str):
            logger.error(f"Error processing {target}: {str(e)}")
            continue
             
-
-directory = ''
-output_dir = ''
-weights_folder = ''
-    
-
-inference(directory, output_dir, weights_path)
+if __name__ == "__main__":
+   directory = ""  # Input directory path
+   output_dir = ""  # Output directory path
+   weights_path = ""  # Model weights path
+   
+   inference(directory, output_dir, weights_path)
