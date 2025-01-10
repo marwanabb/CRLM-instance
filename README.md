@@ -2,6 +2,8 @@
 
 Code for ISBI-2025 Conference - INSTANCE-AWARE DEEP LEARNING FOR LIVER METASTASIS SEGMENTATION
 
+![fig](https://github.com/user-attachments/assets/b61e76b4-cd49-4a50-939b-4dbb058d7219)
+
 ## Overview 
 
 This project focuses on investigating the use of instance-aware loss approach in deep segmentation models applied to the detection and segmentation of liver colorectal metastases (CRLM).
