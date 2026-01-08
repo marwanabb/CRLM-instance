@@ -66,13 +66,17 @@ Post-processing helps filter out small artifact components with a fixed volume t
 If you use this code in your research, please cite our paper:
 
 ```bibtex
-@INPROCEEDINGS{10980698,
-  author={Abbas, M. and Andrade-Miranda, G. and Jaouen, V. and Bourbonne, V. and Bert, J. and Visvikis, D. and Badic, B. and Conze, P.-H.},
-  booktitle={2025 IEEE 22nd International Symposium on Biomedical Imaging (ISBI)}, 
-  title={Instance-Aware Deep Learning for Liver Metastasis Segmentation}, 
-  year={2025},
-  pages={1-5},
-  doi={10.1109/ISBI60581.2025.10980698}}
+@inproceedings{Abbas2025Instance,
+	author = {Abbas, M. and Andrade-Miranda, G. and Jaouen, V. and Bourbonne, V. and Bert, J. and Visvikis, D. and Badic, B. and Conze, P.-H.},
+	booktitle = {2025 {IEEE} 22nd {International} {Symposium} on {Biomedical} {Imaging} ({ISBI})},
+	doi = {10.1109/isbi60581.2025.10980698},
+	year = {2025},
+	month = {4},
+	pages = {1--5},
+	organization = {IEEE},
+	title = {Instance-{Aware} {Deep} {Learning} for {Liver} {Metastasis} {Segmentation}},
+	url = {http://dx.doi.org/10.1109/ISBI60581.2025.10980698},
+}
 ```
 
 ## Contact
